@@ -1,4 +1,3 @@
-import CustomLink from "../module/link";
 import GlobalNavBar from "./gnb";
 
 export default function Header() {
