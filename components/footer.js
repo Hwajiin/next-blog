@@ -1,11 +1,16 @@
+import { useAuth } from "../context/auth";
 import CustomLink from "../module/link";
 
-export default function Footer(props) {
-  const { id } = props;
+export default function Footer() {
+  const { isAuthenticated, logout } = useAuth();
+
+  const logoutHandler = () => {
+    logout();
+  };
 
   return (
     <footer>
-      {id ? (
+      {isAuthenticated ? (
         <>
           <ul>
             <li>
@@ -18,7 +23,9 @@ export default function Footer(props) {
               <CustomLink name="FAQ 쓰기" path="/write/faq" />
             </li>
           </ul>
-          <button type="button">Logout</button>
+          <button type="button" onClick={logoutHandler}>
+            Logout
+          </button>
         </>
       ) : (
         <CustomLink name="Login" path="/login" />
