@@ -10,7 +10,9 @@ class ImageService {
 
   upload = async (imgFile) => {
     const formData = new FormData();
+
     formData.append("file", imgFile);
+
     const res = await this.cloudinary_instance.post("/image/upload", formData, {
       params: {
         upload_preset: "yu703dzk",
@@ -18,6 +20,14 @@ class ImageService {
     });
 
     return await res.data;
+  };
+
+  delete = async (imgID) => {
+    const res = await axios.delete("/api/image", {
+      params: {
+        id: imgID,
+      },
+    });
   };
 }
 
