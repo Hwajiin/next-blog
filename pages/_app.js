@@ -1,23 +1,22 @@
 import Layout from "../components/layout";
 import "../styles/globals.css";
-import ImageService from "../service/image";
-import Database from "../service/database";
-import { useRouter } from "next/router";
-
-const imageService = new ImageService();
-const database = new Database();
+import { AuthProvider, ProtectRoute } from "../context/auth";
+import { DatabaseProvider } from "../context/database";
+import { ImageProvider } from "../context/image";
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-
   return (
-    <Layout>
-      <Component
-        imageService={imageService}
-        database={database}
-        {...pageProps}
-      />
-    </Layout>
+    <AuthProvider>
+      <DatabaseProvider>
+        <ImageProvider>
+          <ProtectRoute>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ProtectRoute>
+        </ImageProvider>
+      </DatabaseProvider>
+    </AuthProvider>
   );
 }
 
