@@ -36,6 +36,12 @@ class FirebaseAuth {
   signout = async () => {
     return signOut(this.auth);
   };
+
+  getIdToken = async () => {
+    if (this.auth.currentUser) {
+      return await this.auth.currentUser.getIdToken();
+    }
+  };
 }
 
 export default FirebaseAuth;
