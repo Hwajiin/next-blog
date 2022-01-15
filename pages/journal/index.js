@@ -1,18 +1,26 @@
 import axios from "axios";
+import PostThumbnail from "../../components/postThumbnail";
 
 export default function Journal({ data: posts }) {
   return (
     <section>
       <h1>Journal</h1>
+
       <ul>
-        {Object.keys(posts).map((key) => (
-          <li key={key}>
-            <p>{posts[key].title}</p>
-            <pre>
-              {posts[key].contents.replaceAll(/(<br>|<br \/>|<br\/>)/g, "\r\n")}
-            </pre>
-          </li>
-        ))}
+        {posts &&
+          Object.keys(posts).map((key) => (
+            <li key={key}>
+              <PostThumbnail path={`/journal/${key}`}>
+                <p>{posts[key].title}</p>
+                <pre>
+                  {posts[key].contents.replaceAll(
+                    /(<br>|<br \/>|<br\/>)/g,
+                    "\r\n"
+                  )}
+                </pre>
+              </PostThumbnail>
+            </li>
+          ))}
       </ul>
     </section>
   );

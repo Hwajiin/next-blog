@@ -1,19 +1,20 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import PostThumbnail from "../../components/postThumbnail";
 
-export default function Gallery({ data }) {
-  const [post, setPost] = useState({});
-
-  useEffect(() => {
-    setPost(data);
-  }, [data]);
-
+export default function Gallery({ data: posts }) {
   return (
     <section>
       <h2>Gallery</h2>
-      {Object.keys(post).map((key) => (
-        <p key={key}>{post[key].title}</p>
-      ))}
+      <ul>
+        {posts &&
+          Object.keys(posts).map((key) => (
+            <li key={key}>
+              <PostThumbnail path={`/gallery/${key}`}>
+                <p key={key}>{posts[key].title}</p>
+              </PostThumbnail>
+            </li>
+          ))}
+      </ul>
     </section>
   );
 }
