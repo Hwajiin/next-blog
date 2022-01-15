@@ -6,7 +6,12 @@ export default async function handler(req, res) {
       `
         ${process.env.NEXT_PUBLIC_FIREBASE_APP_DB_URL}/faq.json
         `,
-      req.body
+      req.body,
+      {
+        params: {
+          auth: req.query.auth,
+        },
+      }
     );
   } catch (error) {
     console.log(error);
