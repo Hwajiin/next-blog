@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
-import Custom404 from "../pages/404";
+import NotFoundPage from "../pages/404";
 import FirebaseAuth from "../service/auth";
 import firebaseApp from "../service/firebase";
 
@@ -82,7 +82,7 @@ export const ProtectRoute = ({ children }) => {
     !isAuthenticated &&
     !publicPath.some((path) => path === router.pathname)
   ) {
-    return <Custom404 />;
+    return <NotFoundPage />;
   }
 
   return children;
