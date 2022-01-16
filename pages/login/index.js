@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useAuth } from "../../context/auth";
 
-export default function Login() {
+export default function LoginPage() {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");

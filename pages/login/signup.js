@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
-export default function Signup({ firebaseAuth }) {
+export default function SignupPage({ firebaseAuth }) {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
 

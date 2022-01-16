@@ -3,7 +3,7 @@ import NotFound from "../../components/404";
 import Post from "../../components/post";
 import { useAuth } from "../../context/auth";
 
-export default function JournalPost({ data, pid }) {
+export default function JournalPostPage({ data, pid }) {
   const { isAuthenticated } = useAuth();
 
   return (

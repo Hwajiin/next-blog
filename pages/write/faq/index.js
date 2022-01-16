@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Form from "../../../components/form";
 
-export default function WriteFaq() {
+export default function WriteFaqPage() {
   const [text, setText] = useState("");
   const textRef = useRef();
 

@@ -3,7 +3,7 @@ import { useRef } from "react";
 import Form from "../../../components/form";
 import { useImageService } from "../../../context/image";
 
-export default function WriteGallery() {
+export default function WriteGalleryPage() {
   const { imageService } = useImageService();
   const [imgFile, setImgFile] = useState(null);
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import PostThumbnail from "../../components/postThumbnail";
 
-export default function Journal({ data: posts }) {
+export default function JournalListPage({ data: posts }) {
   return (
     <section>
       <h1>Journal</h1>

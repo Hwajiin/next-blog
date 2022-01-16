@@ -3,7 +3,7 @@ import NotFound from "../../components/404";
 import Post from "../../components/post";
 import { useAuth } from "../../context/auth";
 
-export default function GalleryPost({ data, pid }) {
+export default function GalleryPostPage({ data, pid }) {
   const { isAuthenticated } = useAuth();
 
   return (

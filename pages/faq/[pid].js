@@ -3,7 +3,7 @@ import Post from "../../components/post";
 import { useAuth } from "../../context/auth";
 import NotFound from "../404";
 
-export default function FaqPost({ data, pid }) {
+export default function FaqPostPage({ data, pid }) {
   const { isAuthenticated } = useAuth();
 
   return (

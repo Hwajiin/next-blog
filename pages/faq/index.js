@@ -1,18 +1,18 @@
 import axios from "axios";
 import PostThumbnail from "../../components/postThumbnail";
 
-export default function Faq({ data }) {
+export default function FaqListPage({ data: posts }) {
   return (
     <section>
       <h2>FAQ</h2>
       <ul>
-        {data &&
-          Object.keys(data).map((key) => (
+        {posts &&
+          Object.keys(posts).map((key) => (
             <li key={key}>
               <PostThumbnail path={`/faq/${key}`}>
-                <p>{data[key].title}</p>
+                <p>{posts[key].title}</p>
                 <pre>
-                  {data[key].contents.replaceAll(
+                  {posts[key].contents.replaceAll(
                     /(<br>|<br \/>|<br\/>)/g,
                     "\r\n"
                   )}

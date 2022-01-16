@@ -1,7 +1,7 @@
 import axios from "axios";
 import PostThumbnail from "../../components/postThumbnail";
 
-export default function Gallery({ data: posts }) {
+export default function GalleryListPage({ data: posts }) {
   return (
     <section>
       <h2>Gallery</h2>
