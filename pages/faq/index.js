@@ -25,10 +25,11 @@ export default function FaqListPage({ data: posts }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_FIREBASE_APP_DB_URL}/faq.json`
   );
   const data = await res.data;
-  return { props: { data } };
+
+  return { props: { data }, revalidate: 1 };
 }

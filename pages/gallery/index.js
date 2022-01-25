@@ -19,7 +19,7 @@ export default function GalleryListPage({ data: posts }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_FIREBASE_APP_DB_URL}/gallery.json`
   );
@@ -27,5 +27,6 @@ export async function getServerSideProps(context) {
 
   return {
     props: { data },
+    revalidate: 1,
   };
 }
