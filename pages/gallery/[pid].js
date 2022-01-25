@@ -8,7 +8,6 @@ export default function GalleryPostPage({ data, pid }) {
 
   return (
     <>
-      {!data && <NotFound />}
       {data && (
         <Post
           data={data}
@@ -29,6 +28,12 @@ export async function getServerSideProps(context) {
   );
 
   const data = await res.data;
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
 
   return { props: { data, pid } };
 }

@@ -8,7 +8,6 @@ export default function FaqPostPage({ data, pid }) {
 
   return (
     <>
-      {!data && <NotFound />}
       {data && (
         <Post data={data} category="faq" isAuth={isAuthenticated} pid={pid} />
       )}
@@ -24,6 +23,12 @@ export async function getServerSideProps(context) {
   );
 
   const data = await res.data;
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
 
   return { props: { data, pid } };
 }
