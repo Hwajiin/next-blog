@@ -1,0 +1,15 @@
+@import "../constants/breakpoint.module.scss";
+
+@mixin responsive($device) {
+  @if $device == "T" {
+    @media screen and (min-width: $md-breakpoint) {
+      @content;
+    }
+  }
+
+  @if $device == "D" {
+    @media screen and (min-width: $lg-breakpoint) {
+      @content;
+    }
+  }
+}
