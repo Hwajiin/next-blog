@@ -1,22 +1,24 @@
+@import "../constants/typography.module.scss";
+
 // Additional Customizing reset CSS
 * {
   margin: 0;
-  //   font-family: $font-main;
+  font-family: $font-base-kr;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-// html {
-//   font-family: $font-main;
-//   // 보통 16px이 기본 브라우저 폰트 사이즈로 사용됨
-//   font-size: $font-size-16;
-// }
+html {
+  font-family: $font-base-kr;
+  // 보통 16px이 기본 브라우저 폰트 사이즈로 사용됨
+  font-size: $font-size-16;
+}
 
-// body {
-//   font-family: $font-main;
-//   color: $primary;
-// }
+body {
+  font-family: $font-base-kr;
+  // color: $primary;
+}
 
 h1 {
   margin: 0;
