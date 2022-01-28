@@ -1,5 +1,4 @@
-@import "../constants/typography.module.scss";
-@import "../constants/colors.module.scss";
+@use "../constants/typography.module.scss";
 
 @mixin text-style-11 {
   $font-size-12: 12px;
