@@ -1,0 +1,15 @@
+@import "../../styles/module/button.module.scss";
+
+.list {
+  display: flex;
+
+  .item {
+    margin-left: 10px;
+
+    .link {
+      text-transform: uppercase;
+      padding: 10px;
+      padding-right: 0;
+    }
+  }
+}
