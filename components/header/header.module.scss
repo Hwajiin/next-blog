@@ -1,0 +1,22 @@
+@import "../../styles/layouts/grids.module.scss";
+@import "../../styles/mixins/flexbox.module.scss";
+@import "../../styles/mixins/text-style.module.scss";
+
+.header {
+  display: flex;
+  height: 60px;
+
+  .container {
+    .row {
+      height: 100%;
+
+      .col_sm_4 {
+        @include flexbox(between);
+
+        .logo {
+          @include text-style-24;
+        }
+      }
+    }
+  }
+}
