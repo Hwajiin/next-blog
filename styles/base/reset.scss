@@ -1,4 +1,5 @@
 @import "../constants/typography.module.scss";
+@import "../constants/colors.module.scss";
 
 // Additional Customizing reset CSS
 * {
@@ -17,7 +18,8 @@ html {
 
 body {
   font-family: $font-base-kr;
-  // color: $primary;
+  color: $white;
+  background-color: $dark;
 }
 
 h1 {
