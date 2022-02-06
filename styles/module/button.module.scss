@@ -1,11 +1,12 @@
 %button-effect {
   &:hover,
   &:active {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 }
 
-.link {
+.link,
+.button {
   transition: all 0.2s ease-in;
 
   @extend %button-effect;
