@@ -1,0 +1,11 @@
+@import "../../../styles/layouts/grids.module.scss";
+@import "../../../styles/mixins/text-style.module.scss";
+
+.section {
+  .container {
+    .row {
+      .col_sm_4 {
+      }
+    }
+  }
+}
