@@ -1,17 +1,22 @@
 import axios from "axios";
-import Post from "../../components/post";
+import PostDetail from "../../components/post/postDetail/postDetail";
+import PostDetailPageLayout from "../../components/post/postDetailPageLayout/postDetailPageLayout";
 import { useAuth } from "../../context/auth";
-import NotFound from "../404";
 
 export default function FaqPostPage({ data, pid }) {
   const { isAuthenticated } = useAuth();
 
   return (
-    <>
+    <PostDetailPageLayout>
       {data && (
-        <Post data={data} category="faq" isAuth={isAuthenticated} pid={pid} />
+        <PostDetail
+          data={data}
+          category="faq"
+          isAuth={isAuthenticated}
+          pid={pid}
+        />
       )}
-    </>
+    </PostDetailPageLayout>
   );
 }
 

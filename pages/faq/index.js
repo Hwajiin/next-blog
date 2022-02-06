@@ -1,27 +1,24 @@
 import axios from "axios";
-import PostThumbnail from "../../components/postThumbnail";
+import PostItem from "../../components/post/postItem/postItem";
+import PostListPageLayout from "../../components/post/postListPageLayout/postListPageLayout";
 
 export default function FaqListPage({ data: posts }) {
   return (
-    <section>
-      <h2>FAQ</h2>
-      <ul>
-        {posts &&
-          Object.keys(posts).map((key) => (
-            <li key={key}>
-              <PostThumbnail path={`/faq/${key}`}>
-                <p>{posts[key].title}</p>
-                <pre>
-                  {posts[key].contents.replaceAll(
-                    /(<br>|<br \/>|<br\/>)/g,
-                    "\r\n"
-                  )}
-                </pre>
-              </PostThumbnail>
-            </li>
+    <PostListPageLayout title="faq">
+      {posts && (
+        <ul>
+          {Object.keys(posts).map((key) => (
+            <PostItem
+              key={key}
+              path={`/faq/${key}`}
+              title={posts[key].title}
+              contents={posts[key].contents}
+            />
           ))}
-      </ul>
-    </section>
+        </ul>
+      )}
+      {!posts && <p>게시물이 없습니다</p>}
+    </PostListPageLayout>
   );
 }
 

@@ -1,21 +1,25 @@
 import axios from "axios";
-import PostThumbnail from "../../components/postThumbnail";
+import PostItem from "../../components/post/postItem/postItem";
+import PostListPageLayout from "../../components/post/postListPageLayout/postListPageLayout";
 
 export default function GalleryListPage({ data: posts }) {
   return (
-    <section>
-      <h2>Gallery</h2>
-      <ul>
-        {posts &&
-          Object.keys(posts).map((key) => (
-            <li key={key}>
-              <PostThumbnail path={`/gallery/${key}`}>
-                <p key={key}>{posts[key].title}</p>
-              </PostThumbnail>
-            </li>
-          ))}
-      </ul>
-    </section>
+    <PostListPageLayout title="gallery">
+      {posts && (
+        <ul>
+          {posts &&
+            Object.keys(posts).map((key) => (
+              <PostItem
+                key={key}
+                path={`/gallery/${key}`}
+                title={posts[key].title}
+                image={posts[key].url}
+              />
+            ))}
+        </ul>
+      )}
+      {!posts && <p>게시물이 없습니다</p>}
+    </PostListPageLayout>
   );
 }
 

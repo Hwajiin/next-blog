@@ -1,22 +1,25 @@
 import axios from "axios";
-import NotFound from "../../components/404";
-import Post from "../../components/post";
+import { useEffect } from "react";
+import PostDetail from "../../components/post/postDetail/postDetail";
+import PostDetailPageLayout from "../../components/post/postDetailPageLayout/postDetailPageLayout";
 import { useAuth } from "../../context/auth";
 
 export default function JournalPostPage({ data, pid }) {
   const { isAuthenticated } = useAuth();
 
+  useEffect(() => {}, []);
+
   return (
-    <>
+    <PostDetailPageLayout>
       {data && (
-        <Post
+        <PostDetail
           data={data}
           category="journal"
           isAuth={isAuthenticated}
           pid={pid}
         />
       )}
-    </>
+    </PostDetailPageLayout>
   );
 }
 

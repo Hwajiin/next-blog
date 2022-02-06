@@ -1,28 +1,25 @@
 import axios from "axios";
-import PostThumbnail from "../../components/postThumbnail";
+import PostItem from "../../components/post/postItem/postItem";
+import PostListPageLayout from "../../components/post/postListPageLayout/postListPageLayout";
 
 export default function JournalListPage({ data: posts }) {
   return (
-    <section>
-      <h1>Journal</h1>
-
-      <ul>
-        {posts &&
-          Object.keys(posts).map((key) => (
-            <li key={key}>
-              <PostThumbnail path={`/journal/${key}`}>
-                <p>{posts[key].title}</p>
-                <pre>
-                  {posts[key].contents.replaceAll(
-                    /(<br>|<br \/>|<br\/>)/g,
-                    "\r\n"
-                  )}
-                </pre>
-              </PostThumbnail>
-            </li>
-          ))}
-      </ul>
-    </section>
+    <PostListPageLayout title="journal">
+      {posts && (
+        <ul>
+          {posts &&
+            Object.keys(posts).map((key) => (
+              <PostItem
+                key={key}
+                path={`/journal/${key}`}
+                title={posts[key].title}
+                contents={posts[key].contents}
+              />
+            ))}
+        </ul>
+      )}
+      {!posts && <p>게시물이 없습니다</p>}
+    </PostListPageLayout>
   );
 }
 
