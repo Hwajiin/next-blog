@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "./gnb.module.scss";
 
 const category = [
@@ -8,13 +9,22 @@ const category = [
 ];
 
 export default function GlobalNavBar() {
+  const router = useRouter();
+
   return (
     <nav>
       <ul className={styles.list}>
-        {category.map((item, index) => (
-          <li key={index} className={styles.item}>
+        {category.map((item, idx) => (
+          <li key={idx} className={styles.item}>
             <Link href={item.path}>
-              <a className={styles.link}>{item.name}</a>
+              <a
+                className={`
+              ${styles.link}
+              ${router.pathname.includes(item.path) ? styles.isActive : ""}
+              `}
+              >
+                {item.name}
+              </a>
             </Link>
           </li>
         ))}

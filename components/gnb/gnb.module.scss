@@ -1,15 +1,20 @@
 @import "../../styles/module/button.module.scss";
+@import "../../styles/constants/colors.module.scss";
 
 .list {
   display: flex;
 
   .item {
-    margin-left: 10px;
+    margin-left: 15px;
 
     .link {
       text-transform: uppercase;
       padding: 10px;
       padding-right: 0;
+
+      &.isActive {
+        color: $blue;
+      }
     }
   }
 }
