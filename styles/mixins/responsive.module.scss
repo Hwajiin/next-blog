@@ -1,4 +1,4 @@
-@use "/styles/constants/breakpoint.module.scss";
+@import "/styles/constants/breakpoint.module.scss";
 
 @mixin responsive($device) {
   @if $device == "T" {
