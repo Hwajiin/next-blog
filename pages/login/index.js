@@ -1,8 +1,14 @@
-import { useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useRef, useState } from "react";
+import PostListPageLayout from "../../components/post/postListPageLayout/postListPageLayout";
 import { useAuth } from "../../context/auth";
+import Button from "../../module/button/button";
+import styles from "./login.module.scss";
 
 export default function LoginPage() {
-  const { login } = useAuth();
+  const router = useRouter();
+
+  const { login, uid } = useAuth();
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
 
@@ -25,31 +31,46 @@ export default function LoginPage() {
     }
   };
 
+  useEffect(() => {
+    if (uid) {
+      router.push("/");
+    }
+  });
+
   return (
-    <form>
-      <label htmlFor="email">아이디</label>
-      <input
-        id="email"
-        type="email"
-        placeholder="이메일을 적어주세요"
-        ref={emailRef}
-        value={email}
-        onChange={emailHandler}
-      />
+    <PostListPageLayout title="로그인하기">
+      <form className={styles.form}>
+        <div className={styles.inputBox}>
+          <label htmlFor="email">아이디</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="이메일을 적어주세요"
+            ref={emailRef}
+            value={email}
+            onChange={emailHandler}
+          />
+        </div>
 
-      <label htmlFor="password">비밀번호</label>
-      <input
-        id="password"
-        type="password"
-        placeholder="비밀번호를 적어주세요"
-        ref={pwRef}
-        value={pw}
-        onChange={pwHandler}
-      />
+        <div className={styles.inputBox}>
+          <label htmlFor="password">비밀번호</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="비밀번호를 적어주세요"
+            ref={pwRef}
+            value={pw}
+            onChange={pwHandler}
+          />
+        </div>
 
-      <button type="submit" onClick={loginHandler}>
-        로그인
-      </button>
-    </form>
+        <Button
+          type="submit"
+          name="Log In"
+          clickHandler={loginHandler}
+          isOutlined={true}
+        />
+      </form>
+    </PostListPageLayout>
   );
 }
