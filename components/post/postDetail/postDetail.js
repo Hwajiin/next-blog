@@ -68,7 +68,7 @@ export default function PostDetail({ category, data, isAuth, pid }) {
               src={data.url}
               alt={data.title}
               layout="fill"
-              objectFit="cover"
+              objectFit="contain"
             />
           </div>
         )}
