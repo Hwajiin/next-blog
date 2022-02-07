@@ -1,48 +1,29 @@
 import axios from "axios";
-import { useRef, useState } from "react";
-import Form from "../../../components/form";
-import { useImageService } from "../../../context/image";
+import FileInput from "../../../components/fileInput/fileInput";
+import Form from "../../../components/form/form";
+import FormInput from "../../../components/formInput/formInput";
+import PostListPageLayout from "../../../components/post/postListPageLayout/postListPageLayout";
 
 export default function GalleryEditPage({ data, pid }) {
-  const { imageService } = useImageService();
-  const [imgFile, setImgFile] = useState(null);
-
-  const imgRef = useRef(null);
-
-  const imgPathHandler = async () => {
-    if (imgRef.current) {
-      setImgFile(imgRef.current.files[0]);
-    }
-  };
-
-  const deletePrevImg = async () => {
-    await imageService.delete(data.image_id);
-  };
-
-  const imgHandler = async () => {
-    deletePrevImg();
-    return await imageService.upload(imgFile);
+  const initialFormValues = {
+    title: data.title,
+    imgFile: "",
   };
 
   return (
-    <section>
-      <h1>Gallery 수정하기</h1>
-      <Form
-        contentType="gallery"
-        postingHandler={imgHandler}
-        pid={pid}
-        data={data}
-      >
-        <label htmlFor="gallery">파일올리기</label>
-        <input
-          id="gallery"
-          type="file"
-          accept="image/*"
-          ref={imgRef}
-          onChange={imgPathHandler}
+    <PostListPageLayout title="Gallery 수정하기">
+      <Form initialFormValues={initialFormValues} category="gallery" pid={pid}>
+        <FormInput
+          label="# 제목"
+          id="title"
+          name="title"
+          placeholder="50자 이내로 작성해주세요"
+          maxLength={50}
         />
+
+        <FileInput label="이미지 파일" id="imgFile" name="imgFile" />
       </Form>
-    </section>
+    </PostListPageLayout>
   );
 }
 

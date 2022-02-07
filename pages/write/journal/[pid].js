@@ -1,39 +1,35 @@
 import axios from "axios";
-import { useRef, useState } from "react";
-import Form from "../../../components/form";
+import Form from "../../../components/form/form";
+import FormInput from "../../../components/formInput/formInput";
+import FormTextArea from "../../../components/formTextArea/formTextArea";
+import PostListPageLayout from "../../../components/post/postListPageLayout/postListPageLayout";
+import { convertHTMLElement } from "../../../service/form";
 
 export default function JournalEditPage({ data, pid }) {
-  const [text, setText] = useState(data.contents);
-  const textRef = useRef();
-
-  const textHandler = () => {
-    setText(textRef?.current.value);
-  };
-
-  const journalHandler = () => {
-    return { contents: text.replaceAll(/(\n|\r)/g, "<br>") };
+  const initialFormValues = {
+    title: data.title,
+    contents: convertHTMLElement(data.contents),
   };
 
   return (
-    <section>
-      <h1>일지 수정하기</h1>
-      <Form
-        contentType="journal"
-        postingHandler={journalHandler}
-        pid={pid}
-        data={data}
-      >
-        <label htmlFor="journal">글쓰기</label>
-        <textarea
-          id="journal"
-          cols="50"
-          rows="10"
-          ref={textRef}
-          value={text}
-          onChange={textHandler}
+    <PostListPageLayout title="개발일지 수정하기">
+      <Form initialFormValues={initialFormValues} category="journal" pid={pid}>
+        <FormInput
+          label="# 제목"
+          id="title"
+          name="title"
+          placeholder="50자 이내로 작성해주세요"
+          maxLength={50}
+        />
+
+        <FormTextArea
+          id="contents"
+          label="글쓰기"
+          name="contents"
+          placeholder="오늘의 개발 이야기를 작성해주세요"
         />
       </Form>
-    </section>
+    </PostListPageLayout>
   );
 }
 

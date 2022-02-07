@@ -1,32 +1,32 @@
-import { useRef, useState } from "react";
-import Form from "../../../components/form";
+import Form from "../../../components/form/form";
+import FormInput from "../../../components/formInput/formInput";
+import FormTextArea from "../../../components/formTextArea/formTextArea";
+import PostListPageLayout from "../../../components/post/postListPageLayout/postListPageLayout";
 
 export default function WriteFaqPage() {
-  const [text, setText] = useState("");
-  const textRef = useRef();
-
-  const textHandler = () => {
-    setText(textRef?.current.value);
-  };
-
-  const faqHandler = () => {
-    return { contents: text.replaceAll(/(\n|\r)/g, "<br>") };
+  const initialFormValues = {
+    title: "",
+    contents: "",
   };
 
   return (
-    <section>
-      <h1>✏️FAQ 쓰기</h1>
-      <Form contentType="faq" contentRef={textRef} postingHandler={faqHandler}>
-        <label htmlFor="faq">글쓰기</label>
-        <textarea
-          id="faq"
-          cols="50"
-          rows="10"
-          ref={textRef}
-          value={text}
-          onChange={textHandler}
+    <PostListPageLayout title="✏️ FAQ 쓰기">
+      <Form initialFormValues={initialFormValues} category="faq">
+        <FormInput
+          label="# 제목"
+          id="title"
+          name="title"
+          placeholder="50자 이내로 작성해주세요"
+          maxLength={50}
+        />
+
+        <FormTextArea
+          id="contents"
+          label="글쓰기"
+          name="contents"
+          placeholder="FAQ 내용을 작성해주세요"
         />
       </Form>
-    </section>
+    </PostListPageLayout>
   );
 }
