@@ -3,19 +3,25 @@ import PostItem from "../../components/post/postItem/postItem";
 import PostListPageLayout from "../../components/post/postListPageLayout/postListPageLayout";
 
 export default function GalleryListPage({ data: posts }) {
+  const postsList = Object.keys(posts)
+    .map((key) => ({
+      id: key,
+      ...posts[key],
+    }))
+    .reverse();
+
   return (
     <PostListPageLayout title="gallery">
-      {posts && (
+      {postsList && (
         <ul>
-          {posts &&
-            Object.keys(posts).map((key) => (
-              <PostItem
-                key={key}
-                path={`/gallery/${key}`}
-                title={posts[key].title}
-                image={posts[key].url}
-              />
-            ))}
+          {postsList.map((post) => (
+            <PostItem
+              key={post.id}
+              path={`/gallery/${post.id}`}
+              title={post.title}
+              image={post.url}
+            />
+          ))}
         </ul>
       )}
       {!posts && <p>게시물이 없습니다</p>}
