@@ -73,10 +73,10 @@ export default function PostDetail({ category, data, isAuth, pid }) {
           </div>
         )}
         {!(category === "gallery") && (
-          <p>
+          <pre>
             {data.contents &&
               data.contents.replaceAll(/(<br>|<br \/>|<br\/>)/g, "\r\n")}
-          </p>
+          </pre>
         )}
       </div>
     </div>
