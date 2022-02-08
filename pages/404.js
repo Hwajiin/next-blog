@@ -1,3 +1,9 @@
+import PostListPageLayout from "../components/post/postListPageLayout/postListPageLayout";
+
 export default function NotFoundPage() {
-  return <h1>Not Found</h1>;
+  return (
+    <PostListPageLayout>
+      <h1>Not Found</h1>
+    </PostListPageLayout>
+  );
 }
