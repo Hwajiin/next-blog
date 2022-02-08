@@ -8,7 +8,7 @@ export default function PostItem({
   title,
   contents = null,
 }) {
-  const preview = contents?.replaceAll(/(<br>|<br \/>|<br\/>)/g, "\r\n");
+  const preview = contents?.replaceAll(/(<br>|<br \/>|<br\/>)/g, " ");
 
   return (
     <li className={styles.item}>
