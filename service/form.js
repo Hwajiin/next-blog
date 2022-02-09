@@ -63,7 +63,6 @@ class FormUtils {
 
   postingByCategory = async (category) => {
     let data;
-    this.setLoading(true);
 
     switch (category) {
       // Gallery
@@ -80,7 +79,6 @@ class FormUtils {
         };
 
         await this.uploadingPost(this.pid, "gallery", data);
-        await this.setLoading(false);
 
         break;
 
@@ -92,7 +90,6 @@ class FormUtils {
         };
 
         await this.uploadingPost(this.pid, "journal", data);
-        await this.setLoading(false);
         break;
 
       // FAQ
@@ -103,7 +100,6 @@ class FormUtils {
         };
 
         await this.uploadingPost(this.pid, "faq", data);
-        await this.setLoading(false);
         break;
     }
   };
