@@ -31,7 +31,10 @@ export async function getServerSideProps(context) {
 
   if (!data) {
     return {
-      notFound: true,
+      redirect: {
+        destination: "/gallery",
+        permanent: false,
+      },
     };
   }
 
