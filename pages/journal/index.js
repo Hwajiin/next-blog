@@ -3,12 +3,14 @@ import PostItem from "../../components/post/postItem/postItem";
 import PostListPageLayout from "../../components/post/postListPageLayout/postListPageLayout";
 
 export default function JournalListPage({ data: posts }) {
-  const postsList = Object.keys(posts)
-    .map((key) => ({
-      id: key,
-      ...posts[key],
-    }))
-    .reverse();
+  const postsList =
+    posts &&
+    Object.keys(posts)
+      .map((key) => ({
+        id: key,
+        ...posts[key],
+      }))
+      .reverse();
 
   return (
     <PostListPageLayout title="journal">
