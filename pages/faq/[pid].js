@@ -1,4 +1,5 @@
 import axios from "axios";
+import HeadCompo from "../../components/head";
 import PostDetail from "../../components/post/postDetail/postDetail";
 import PostDetailPageLayout from "../../components/post/postDetailPageLayout/postDetailPageLayout";
 import { useAuth } from "../../context/auth";
@@ -7,16 +8,20 @@ export default function FaqPostPage({ data, pid }) {
   const { isAuthenticated } = useAuth();
 
   return (
-    <PostDetailPageLayout>
-      {data && (
-        <PostDetail
-          data={data}
-          category="faq"
-          isAuth={isAuthenticated}
-          pid={pid}
-        />
-      )}
-    </PostDetailPageLayout>
+    <div>
+      <HeadCompo title={data.title} description={data.contents} />
+
+      <PostDetailPageLayout>
+        {data && (
+          <PostDetail
+            data={data}
+            category="faq"
+            isAuth={isAuthenticated}
+            pid={pid}
+          />
+        )}
+      </PostDetailPageLayout>
+    </div>
   );
 }
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import HeadCompo from "../../components/head";
 import PostItem from "../../components/post/postItem/postItem";
 import PostListPageLayout from "../../components/post/postListPageLayout/postListPageLayout";
 
@@ -13,21 +14,28 @@ export default function GalleryListPage({ data: posts }) {
       .reverse();
 
   return (
-    <PostListPageLayout title="gallery">
-      {postsList && (
-        <ul>
-          {postsList.map((post) => (
-            <PostItem
-              key={post.id}
-              path={`/gallery/${post.id}`}
-              title={post.title}
-              image={post.url}
-            />
-          ))}
-        </ul>
-      )}
-      {!posts && <p>게시물이 없습니다</p>}
-    </PostListPageLayout>
+    <div>
+      <HeadCompo
+        title="Gallery"
+        description="일상 사진을 기록한 페이지입니다. 사진 리스트를 구경해보세요."
+      />
+
+      <PostListPageLayout title="gallery">
+        {postsList && (
+          <ul>
+            {postsList.map((post) => (
+              <PostItem
+                key={post.id}
+                path={`/gallery/${post.id}`}
+                title={post.title}
+                image={post.url}
+              />
+            ))}
+          </ul>
+        )}
+        {!posts && <p>게시물이 없습니다</p>}
+      </PostListPageLayout>
+    </div>
   );
 }
 

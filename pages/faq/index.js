@@ -1,4 +1,5 @@
 import axios from "axios";
+import HeadCompo from "../../components/head";
 import PostItem from "../../components/post/postItem/postItem";
 import PostListPageLayout from "../../components/post/postListPageLayout/postListPageLayout";
 
@@ -13,21 +14,28 @@ export default function FaqListPage({ data: posts }) {
       .reverse();
 
   return (
-    <PostListPageLayout title="faq">
-      {postsList && (
-        <ul>
-          {postsList.map((post) => (
-            <PostItem
-              key={post.id}
-              path={`/faq/${post.id}`}
-              title={post.title}
-              contents={post.contents}
-            />
-          ))}
-        </ul>
-      )}
-      {!posts && <p>게시물이 없습니다</p>}
-    </PostListPageLayout>
+    <div>
+      <HeadCompo
+        title="FAQ"
+        description="예상 질문들을 정리한 페이지입니다. FAQ 리스트를 구경해보세요."
+      />
+
+      <PostListPageLayout title="faq">
+        {postsList && (
+          <ul>
+            {postsList.map((post) => (
+              <PostItem
+                key={post.id}
+                path={`/faq/${post.id}`}
+                title={post.title}
+                contents={post.contents}
+              />
+            ))}
+          </ul>
+        )}
+        {!posts && <p>게시물이 없습니다</p>}
+      </PostListPageLayout>
+    </div>
   );
 }
 

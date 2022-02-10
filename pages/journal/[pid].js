@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect } from "react";
+import HeadCompo from "../../components/head";
 import PostDetail from "../../components/post/postDetail/postDetail";
 import PostDetailPageLayout from "../../components/post/postDetailPageLayout/postDetailPageLayout";
 import { useAuth } from "../../context/auth";
@@ -7,19 +7,21 @@ import { useAuth } from "../../context/auth";
 export default function JournalPostPage({ data, pid }) {
   const { isAuthenticated } = useAuth();
 
-  useEffect(() => {}, []);
-
   return (
-    <PostDetailPageLayout>
-      {data && (
-        <PostDetail
-          data={data}
-          category="journal"
-          isAuth={isAuthenticated}
-          pid={pid}
-        />
-      )}
-    </PostDetailPageLayout>
+    <div>
+      <HeadCompo title={data.title} description={data.contents} />
+
+      <PostDetailPageLayout>
+        {data && (
+          <PostDetail
+            data={data}
+            category="journal"
+            isAuth={isAuthenticated}
+            pid={pid}
+          />
+        )}
+      </PostDetailPageLayout>
+    </div>
   );
 }
 
