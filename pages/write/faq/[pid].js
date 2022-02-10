@@ -1,11 +1,37 @@
 import axios from "axios";
+import { useRouter } from "next/router";
+import useSWR from "swr";
 import Form from "../../../components/form/form";
 import FormInput from "../../../components/formInput/formInput";
 import FormTextArea from "../../../components/formTextArea/formTextArea";
 import PostListPageLayout from "../../../components/post/postListPageLayout/postListPageLayout";
+import Spinner from "../../../module/spinner/spinner";
 import { convertHTMLElement } from "../../../service/form";
 
-export default function FaqEditPage({ data, pid }) {
+// TODO: useSWR 로직 재사용성 높이기
+const fetcher = async (...args) => {
+  const res = await axios.get(...args);
+  return res.data;
+};
+
+export default function FaqEditPage() {
+  const {
+    query: { pid },
+  } = useRouter();
+
+  const { error, data } = useSWR(
+    `${process.env.NEXT_PUBLIC_FIREBASE_APP_DB_URL}/faq/${pid}.json`,
+    fetcher
+  );
+
+  if (error) {
+    return <p>error...</p>;
+  }
+
+  if (!data) {
+    return <Spinner />;
+  }
+
   const initialFormValues = {
     title: data.title,
     contents: convertHTMLElement(data.contents),
@@ -31,16 +57,4 @@ export default function FaqEditPage({ data, pid }) {
       </Form>
     </PostListPageLayout>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { pid } = context.query;
-
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_FIREBASE_APP_DB_URL}/faq/${pid}.json`
-  );
-
-  const data = await res.data;
-
-  return { props: { data, pid } };
 }
