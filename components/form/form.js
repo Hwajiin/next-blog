@@ -36,11 +36,11 @@ export default function Form({
     imageService
   );
 
-  // TODO: Loading이 완료된 후 redirect 되도록 리팩토링하기
-  const redirectingRoute = (category) => {
+  const redirectingRoute = async (category) => {
     if (!loading) {
       if (category) {
-        router.push(`/${category}`);
+        const res = await router.push(`/${category}`);
+        res && router.reload();
       } else {
         router.push("/");
       }
@@ -82,11 +82,12 @@ export default function Form({
       console.warn("제목, 파일 및 내용을 입력해주세요!");
     } else {
       try {
+        setLoading(true);
         formUtils.postingByCategory(category);
+        setLoading(false);
+        redirectingRoute(category);
       } catch (error) {
         console.log(error);
-      } finally {
-        redirectingRoute(category);
       }
     }
   };
