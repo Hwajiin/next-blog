@@ -4,8 +4,6 @@ import styles from "./fileInput.module.scss";
 export default function FileInput({ label, id, name }) {
   const { form, formChangeHandler } = useForm();
 
-  console.log(form);
-
   return (
     <div className={styles.fileInput}>
       <label htmlFor={id}>
@@ -22,8 +20,6 @@ export default function FileInput({ label, id, name }) {
         name={name}
         onChange={formChangeHandler}
       />
-
-      <button></button>
     </div>
   );
 }
