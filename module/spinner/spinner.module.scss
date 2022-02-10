@@ -1,0 +1,26 @@
+@import "../../styles/mixins/flexbox.module.scss";
+@import "../../styles/constants/colors.module.scss";
+
+.container {
+  width: 100%;
+  height: 300px;
+  @include flexbox();
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid $blue;
+    border-radius: 50%;
+    border-top: 5px solid $dark;
+    animation: spin 0.7s infinite linear;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
