@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useAuth } from "../../../context/auth";
 import { useDB } from "../../../context/database";
 import { useImageService } from "../../../context/image";
@@ -35,7 +36,7 @@ export default function PostDetail({ category, data, isAuth, pid }) {
     } catch (error) {
       console.log(error);
     } finally {
-      router.reload(router.asPath);
+      router.reload();
     }
   };
 
